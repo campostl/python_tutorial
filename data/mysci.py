@@ -21,13 +21,14 @@ with open(filename,'r') as datafile:
        split_line = line.split()
        data['date'].append(split_line[0])
        data['time'].append(split_line[1])
-       data['tempout'].append(split_line[2])
+       data['tempout'].append(float(split_line[2]))
+# other data types are 'int' implemented after the float conversion
 
 # line.split('\t') for tab delimiter, etc. default is whitespace
 #       data.append(datum) 
 
 # DEBUG
-print(data['time'])
+print(data['tempout'])
 # this won't work because the list we create with our nested indices is only
 # 3 elements in length
 #print(data[5:8][4])
