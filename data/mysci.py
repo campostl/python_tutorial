@@ -1,5 +1,9 @@
 # Initialize my data variable as a list variable
-data = []
+#data = []
+
+# Initialize my data as a data dictionary; keys are strings, colon maps
+data = {'date':[], 'time':[], 'tempout':[]}
+# ex of usage time = data['time']
 
 # Read the data file
 filename = "wxobs20170821.txt"
@@ -11,13 +15,19 @@ with open(filename,'r') as datafile:
    for _ in range(3):
        print(_)
        datafile.readline()
+
    # Read and parse the rest of the file line var is a string
    for line in datafile:
-       datum = line.split()
+       split_line = line.split()
+       data['date'].append(split_line[0])
+       data['time'].append(split_line[1])
+       data['tempout'].append(split_line[2])
+
 # line.split('\t') for tab delimiter, etc. default is whitespace
-       data.append(datum) 
+#       data.append(datum) 
 
 # DEBUG
+print(data['time'])
 # this won't work because the list we create with our nested indices is only
 # 3 elements in length
 #print(data[5:8][4])
