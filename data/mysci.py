@@ -1,13 +1,17 @@
-# Initialize my data variable as a list variable
-#data = []
+# Column names an dcolumn indices to read
+columns = {'date':0, 'time':1, 'tempout':2}
 
-# Initialize my data as a data dictionary; keys are strings, colon maps
-data = {'date':[], 'time':[], 'tempout':[]}
-# ex of usage time = data['time']
+#Data types for each column (only if non-string)
+types = {'tempout':float}
+
+# Initialize my data as a data dictionary; 
+# curly brackets => dictionary keys are strings, colon maps
+data = {}
+for column in columns:
+    data[column] = []
 
 # Read the data file
 filename = "wxobs20170821.txt"
-
 with open(filename,'r') as datafile:
 
    # read the first three lines (header) using a for loop
@@ -19,28 +23,16 @@ with open(filename,'r') as datafile:
    # Read and parse the rest of the file line var is a string
    for line in datafile:
        split_line = line.split()
-       data['date'].append(split_line[0])
-       data['time'].append(split_line[1])
-       data['tempout'].append(float(split_line[2]))
-# other data types are 'int' implemented after the float conversion
+       for column in columns:
+           i = columns[column]
+           t = types.get(column, str)
+           value = t(split_line[i])
+           data[column].append(value)
 
 # line.split('\t') for tab delimiter, etc. default is whitespace
 #       data.append(datum) 
 
-# DEBUG
-print(data['tempout'])
-# this won't work because the list we create with our nested indices is only
-# 3 elements in length
-#print(data[5:8][4])
-
-
-#print(data[8][4])
-#print(data[8][:5])
-#print(data[8][::2])
-#print(data[8][4][0]) # print only first character of the selected element
-#print(data[8[4]])
-
-
+# old DEBUG
 #for datum in data[:10:2]:
 #    print(datum)
 # print(data[-1])
