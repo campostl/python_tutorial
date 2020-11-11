@@ -1,8 +1,8 @@
 # Column names an dcolumn indices to read
-columns = {'date':0, 'time':1, 'tempout':2, 'windspeed':7}
+columns = {'date':0, 'time':1, 'tempout':2, 'windspeed':7, 'windchill':12}
 
 #Data types for each column (only if non-string)
-types = {'tempout':float, 'windspeed': float}
+types = {'tempout':float, 'windspeed': float, 'windchill': float}
 
 # Initialize my data as a data dictionary; 
 # curly brackets => dictionary keys are strings, colon maps
@@ -49,7 +49,9 @@ for temp, windspeed in zip(data['tempout'], data['windspeed']):
 
 # DEBUG
 #print(data['tempout'])
-print(windchill)
+#print(windchill)
+for wc_data, wc_comp in zip(data['windchill'], windchill):
+    print(f'{wc_data:.5f} {wc_comp:.5f} {wc_data - wc_comp:.5f}')
 
 #for i,j in zip([1,2],[3,4,5]):
 #    print(i,j)
