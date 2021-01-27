@@ -1,0 +1,182 @@
+13:04:14	 From Kevin Paul : https://ncar.github.io/python-tutorial/tutorials/yourfirst.html#writing-functions
+13:04:24	 From Kevin Paul : https://ncar.github.io/python-tutorial/tutorials/yourfirst.html
+13:04:36	 From Kevin Paul : We will be covering content starting here:
+13:04:37	 From Kevin Paul : https://ncar.github.io/python-tutorial/tutorials/yourfirst.html#writing-functions
+13:05:09	 From Kevin Paul : The link displayed is:
+13:05:10	 From Kevin Paul : https://www.weather.gov/media/epz/wxcalc/windChill.pdf
+13:14:06	 From Courtney : is the numeric type automatically determined from the inputs or do you have to force it (just noticing 2/2 = 1.0 not just 1)
+13:16:54	 From gharamti : Courtney: / produces float whatever the input is
+13:18:15	 From Kevin Paul : The numeric type is inferred.
+13:18:22	 From Joe Barsugli : Are the spaces necessary around operators?  after commas?
+13:18:33	 From Kevin Paul : It is best practice, but not necesary.
+13:19:23	 From Kevin Paul : Courtney: In Python 3, the / operator always returns a float for numeric types.  The // operator always returns an integer.
+13:20:00	 From Seth McGinnis : What happens if you don’t have an explicit return value?
+13:20:02	 From Nick Lybarger : Joe: I think she's just putting in spaces for readability
+13:20:22	 From Kevin Paul : You can just not have a return statement if you don’t want to return anything.
+13:20:33	 From Joe Barsugli : Python is so sensitive to white space, I just get worried…
+13:20:41	 From Kevin Paul : By default, that means the function will return None.
+13:20:50	 From borst : Do functions have a specific location in the file? Like having the short main at the end and functions at the start?
+13:20:52	 From Kevin Paul : Joe:  Yeah.  Good to ask.
+13:21:09	 From Todd Arbetter : Can she scroll to the top so we can see how she gets t and v (I came in late)
+13:21:31	 From Kevin Paul : Borst: not unless the functions depend upon something in global scope.  If so, then they need to follow the global scope variables.
+13:21:36	 From Seth McGinnis : def compute_windchill(t, v):
+13:21:40	 From Kevin Paul : Functions can be defined in any order.
+13:21:55	 From Seth McGinnis : Presumably a function has to be defined before it’s called?
+13:21:59	 From Michael Levy : Todd — you can catch up at https://ncar.github.io/python-tutorial/tutorials/yourfirst.html#writing-functions
+13:22:16	 From Kevin Paul : Functions do not need to be defined before being called.
+13:22:19	 From Kevin Paul : Variables do.
+13:22:32	 From Seth McGinnis : !!!
+13:22:37	 From Seth McGinnis : Fascinating.
+13:22:38	 From Kevin Paul : Yeah.  Crazy!
+13:22:41	 From Kevin Paul : :-)
+13:23:33	 From Kevin Paul : Seth:  I should be clear, though.  The functions need to be defined somewhere!  They just don’t have to be defined in order.
+13:24:49	 From Michael Levy : Kevin, is that dependent on your version of python? If I try to call compute_windchill() from a line above it I get NameError: name 'compute_windchill' is not defined
+13:25:26	 From Kevin Paul : In global scope?  Yeah.  I’m being unclear.  If you have a function above that calls a function defined below, that will work.
+13:25:50	 From Kevin Paul : But if you just call the function above its definition, it will fail.
+13:27:59	 From Seth McGinnis : Is name clashing in global scope vs function scope a worry?  Would there be a problem if we used ’t’ and ‘v’ for the names of our iterator variables in the for loop?
+13:28:48	 From Kevin Paul : Yes.  If you create a variable in function scope that has the same name as a variable in global scope, you will not be able to access the global scope variable from within the function.
+13:29:23	 From Kevin Paul : But everything would be fine in global scope.
+13:29:38	 From Seth McGinnis : Thanks!
+13:29:53	 From Dave Serke :  File "mysci.py", line 71, in compute_windchill
+    v16 = v ** 0.16
+TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'fl
+13:29:58	 From Kevin Paul : So, your example would be fine.  The t and v variables in function scope will not overwrite the t and v (in your example) that are in global scope.
+13:30:06	 From Nick Lybarger : you can access global scope variables from within a function?
+13:30:08	 From Nick Lybarger : good to know...
+13:30:38	 From Seth McGinnis : Julia, you have the type for windchill set to 12.
+13:30:40	 From Annareli Morales : Windchill should be float..
+13:30:40	 From Christopher Rozoff : types should be float, not 12
+13:30:45	 From Tracy Hertneky : You have typo  in type
+13:30:52	 From Kevin Paul : Dave, are you reading the 1st 3 lines of the file first?  Or are you not converting the strings to floats?
+13:31:27	 From kong97@purdue.edu : Will all the variables being created within a function still occupy the memory after the function was finished?
+13:32:09	 From Kevin Paul : kong: Yes and no.  Python uses garbage collection for memory management.
+13:32:37	 From Kevin Paul : That means that those variables will no longer be referenced anywhere, so they will be cleaned up when GC happens…sometime.
+13:33:00	 From Kevin Paul : But it doesn’t happen immediately upon returning from the function.
+13:33:20	 From Kevin Paul : And it may not happen during the execution of your script…if there is no reason to clear memory.
+13:33:39	 From Kevin Paul : Garbage collection is complicated.  Controlling memory with Python is hard to do.
+13:33:56	 From Evan Meeker : is f a function here?
+13:34:14	 From Kevin Paul : No.  It’s a special symbol before the string saying that it is an “f-string”.
+13:35:01	 From Kevin Paul : So, if you just had ‘’, it would be a regular string.  And f’’ is an “f-string”.
+13:35:13	 From Kevin Paul : F-strings in Python let you do nice string formatting.
+13:35:14	 From Colleen Petrik : The wc_ things are not defined. How does python know what they refer to?
+13:35:27	 From Kevin Paul : They are defined in the for loop.
+13:36:36	 From Colleen Petrik : So they map to contents of zip?
+13:36:42	 From Kevin Paul : Yes.
+13:36:52	 From Colleen Petrik : Yes, thanks.
+13:36:56	 From Kevin Paul : They are returned from the zip function when it is iterated over.
+13:36:59	 From Evan Meeker : clear
+13:37:01	 From Kevin Paul : (Looped over)
+13:37:12	 From kong97@purdue.edu : Thanks Kevin. I have another problem with using Numba @njit decorator to speed up the scipy.optimize.fsovle to get the solution of equations. But, it seems that Numba cannot recognize fsolve function and the compiling always failed. Could you please point a direction for me?
+13:37:16	 From Brian Kauffman : do for wc_data, wc_comp, cause a memory leak?
+13:37:35	 From Kevin Paul : kong:  not in this tutorial.  Sorry.
+13:37:49	 From Kevin Paul : …Brian:  I’m not sure what you mean?
+13:37:59	 From Kevin Paul : It’s hard to create a memory leak with pure Python.
+13:38:08	 From Kevin Paul : Why would that create a memory leak?
+13:38:12	 From Courtney : wc_data is not an array that is growing on every iteration, if that is what you mean? 
+13:38:41	 From Brian Kauffman : you’re re-assigning them, does this overwrite the same place in memory ?
+13:38:52	 From Kevin Paul : Yes.  It just overwrites.
+13:43:23	 From Seth McGinnis : Is there a difference between ‘ and “ in strings?
+13:43:35	 From Kevin Paul : No.
+13:43:50	 From Kevin Paul : You can use either, but you must be consistent (within a string).
+13:44:02	 From Kevin Paul : That is, you can’t start with a ‘ and end with a “, for example.
+13:44:35	 From borst : As Julia noted that for temps > 45, WC is not accurately calculated by this formula, is there a conditional that can be dropped into the for loop line to skip to the next value and not print the irrelevant data?
+13:44:54	 From borst : Or does it have to be a conditional in the loop?
+13:44:58	 From Swarnali Sanyal : getting this error
+13:45:00	 From Swarnali Sanyal : print(f'{date} {time:>6} {wc_orig:9.6f} {wc_comp:9.6f} {wc_diff:10.6f}')
+                                                                          ^
+SyntaxError: invalid syntax
+13:45:24	 From Kevin Paul : I can’t see the error.
+13:45:27	 From Kelly McGarry : same error
+13:45:39	 From Joe Grim : same error
+13:45:40	 From Courtney : is your print statement indented to be within the for loop?
+13:45:57	 From Swarnali Sanyal : seems like error for f’’ in the print statement
+13:46:00	 From Kevin Paul : I can’t tell where the caret is pointing
+13:46:22	 From Joe Grim : caret is pointing to the second apostrophe
+13:46:41	 From Imoleayo Ezekiel Gbode : What is the meaning of >6 in the time format statement?
+13:47:04	 From Kevin Paul : It means 6 characters in length and right justify.
+13:47:07	 From gharamti : Bless you!
+13:47:20	 From Jamie Wolff : Bless you!
+13:48:03	 From Kevin Paul : I’m stumped on the errors that you all are seeing.  Perhaps at the end of this (which is soon), we can debug.
+13:49:03	 From Kevin Paul : Swarnali, Joe, or Kelly: Would either of you be willing to share your screen after the tutorial is over?
+13:49:18	 From Michael Levy : I copy / pasted the print() line from Swarnali’s error and did not generate a similar error
+13:49:24	 From Joe Grim : I have another meeting at 2:00pm. :-(
+13:49:37	 From Swarnali Sanyal : @kevin sure
+13:50:29	 From Kevin Paul : Joe:  Sorry!
+13:52:29	 From Robert Prestley : could it be an issue with which version of Python a user is using? 
+13:52:40	 From Nick Lybarger : i still have mysci.py in my repository despite having renamed it windchillcomp.py
+13:52:49	 From Kevin Paul : Possibly.  If you are using Python 2, f-strings don’t exist.
+13:52:56	 From Kelly McGarry : :Q
+13:52:57	 From Imoleayo Ezekiel Gbode : Please could you show the last two commands on your terminal ?
+13:53:03	 From Kevin Paul : Nick:  What does git status give you?
+13:53:24	 From Kelly McGarry : aha! I'm using python 2
+13:53:31	 From Kevin Paul : Ah!!!!!
+13:53:35	 From Nick Lybarger : On branch masterChanges not staged for commit:  (use "git add/rm <file>..." to update what will be committed)  (use "git restore <file>..." to discard changes in working directory)        deleted:    mysci.py        modified:   windchillcomp.pyUntracked files:  (use "git add <file>..." to include in what will be committed)        .mysci.py.swp        windchillcomp.py'no changes added to commit (use "git add" and/or "git commit -a")
+13:53:42	 From Joe Grim : I'm using 2.7.13
+13:53:44	 From Kevin Paul : That will do it.  Did you activate your conda environment?
+13:53:44	 From Nick Lybarger : looks like i missed a git commit
+13:53:47	 From David Benson : I have this error: git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+13:53:56	 From Kevin Paul : Nick:  Sounds right.
+13:54:13	 From Kevin Paul : David:  Try using the https syntax.
+13:54:26	 From David Benson : Okay. Thank you!
+13:54:33	 From Kevin Paul : Did that work?
+13:54:49	 From Masih Eghdami : I get permission denied. I guess It’s because it’s private?
+13:54:55	 From Joe Barsugli : I mistyped the git repository name., but when I try “git remote add” again with he correct name it says “remote origin exists”
+13:55:00	 From Danica Lombardozzi : can you add the environment to GitHub?
+13:55:19	 From Kevin Paul : Joe:  Yeah.  You might have to remove the old “origin” and then add it again.
+13:55:24	 From Kelly McGarry : Kevin: I missed the part from the first tutorial about setting up the conda environment. I'll have to go back. Thanks!
+13:55:36	 From Kevin Paul : Danica:  No.  The conda env is a separate thing.
+13:55:51	 From Kevin Paul : Masih: Maybe.  Hard to tell.
+13:55:52	 From David Benson : No, it didn’t. It still points to the SSH syntax
+13:55:57	 From gharamti : Thank you!
+13:56:03	 From Imoleayo Ezekiel Gbode : Thank you
+13:56:07	 From D Damico : Grazie mille
+13:56:08	 From Joe Grim : Thanks!
+13:56:08	 From Scott Meech : Thanks again!
+13:56:08	 From Dave Serke : exact date of next tutorial?
+13:56:09	 From Mario Eduardo Gavidia Calderón : Muito obrigado!
+13:56:10	 From Hanli Liu : Thank you!
+13:56:14	 From Halle Berger : Thank you!
+13:56:16	 From kong97@purdue.edu : Thanks
+13:56:17	 From gharamti : I am not a big fan of “append”
+13:56:18	 From Annareli Morales : I’m getting this error when trying to push “Permission denied (publickey).
+fatal: Could not read from remote repository.”
+13:56:20	 From Uma Bhatt : Thank you. Excellent again!
+13:56:30	 From Rebecca Buchholz : Thank you!
+13:56:36	 From Sanjiv Kumar : Thank you. This is great!
+13:56:46	 From Imoleayo Ezekiel Gbode : Please kindly show the last two commands on your terminal
+13:56:48	 From Teresa Campos : Thank you, Julia and Kevin! Fast paced but extremely well documented in advance and during the webinar.
+13:56:49	 From Imoleayo Ezekiel Gbode : Thanks
+13:56:49	 From Wei-Lei Wang : Thank you! Nice job.
+13:56:55	 From Evan Meeker : Thank you!
+13:56:58	 From Yuhong Fan : Thank you!
+13:57:15	 From Michael Levy : Annareli — that error comes from trying to use the ssh interface (git@github.com) without the proper SSH keys. Try switching to https:// and it will prompt you for a password
+13:57:15	 From Holger Vömel : Thanks!
+13:57:56	 From David Benson : When I try using http I get this error: fatal: remote origin already exists.
+13:58:22	 From Michael Levy : David: git remote remove origin
+13:58:31	 From Nick Lybarger : "fetch" refers to the server repo, while "push" refers to the local repo?
+13:58:32	 From David Benson : Thank you!
+13:59:04	 From Michael Levy : Nick: “fetch” means “retrieve from the remote repo” and “push” means “send to remote repo”
+13:59:31	 From Nick Lybarger : thanks!
+13:59:47	 From Annareli Morales : I’m getting this now: fatal: remote origin already exists.
+13:59:54	 From Seth McGinnis : Does numpy give you vectorization on lists/arrays that lets you skip all the for-loops?
+14:00:09	 From Michael Levy : Annareli: Julia is covering this now, but “git remote remove origin”
+14:00:55	 From Annareli Morales : Got it!!
+14:01:02	 From Masih Eghdami : It worked!
+14:01:18	 From Robert Prestley : I'm getting error "failed to push some refs"
+14:01:21	 From Annareli Morales : thank you! gtg
+14:01:45	 From Robert Prestley : that's fine! i'll work through it later
+14:03:10	 From Swarnali Sanyal : great! thanks for the information regarding version
+14:03:44	 From Seth McGinnis : So can you associate a conda environment with a GitHub repo?
+14:05:27	 From Imoleayo Ezekiel Gbode : Where can one find all the commits on the GitHub?
+14:06:02	 From Tammy Weckwerth : what does “git push origin master” mean? do we have to type that to sync up every time we change content on our local computer if we want it to go to online repository?
+14:06:17	 From Joe Barsugli : In git, what does “origin” refer to?
+14:06:21	 From Seth McGinnis : *thumbs up*
+14:06:46	 From Michael Levy : Joe: “origin” is the name of the remote pointing to the repository on github
+14:07:58	 From David Benson : For the “failed to push some refs” error, I used “git push -u origin main” instead of “git push origin master” and it worked
+14:08:02	 From Michael Levy : You can have many different remotes with different names, but origin is a standard choice if there’s only one remote
+14:08:03	 From Brian Kauffman : I thought I would only have a master branch in gitbub, but I also have a “main” branch which is a default.  Is this normal?   I pushed to the master branch, so this “main” branch has nothing in it.
+14:08:22	 From Tammy Weckwerth : that helps thx
+14:08:38	 From Michael Levy : Brian — GitHub recently started using “main” instead of “master” as the default so it might have populated a branch for you when you created the reop
+14:08:40	 From Michael Levy : repo*
+14:09:13	 From Robert Prestley : Brian this is the issue I had and using git push origin HEAD:master worked for me

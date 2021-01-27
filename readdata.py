@@ -25,10 +25,10 @@ def read_data(columns, types={}, filename="data/wxobs20170821.txt"):
        for line in datafile:
            split_line = line.split()
            for column in columns:
-               i = columns[column, str)
+               i = columns[column]
                t = types.get(column, str)
                value = t(split_line[i])
                data[column].append(value)
 
-   return data
+    return data
 
