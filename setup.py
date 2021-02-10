@@ -1,4 +1,4 @@
-from idsutils.core import setup
+from disutils.core import setup
 
 setup(
     name="mysci",
