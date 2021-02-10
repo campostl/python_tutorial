@@ -7,5 +7,5 @@ setup(
     author="Xdev",
     author_email="xdev@ucar.edu",
     packages=["mysci"],
-    install_requires=[],
-)
+    install_requires=[])
+
